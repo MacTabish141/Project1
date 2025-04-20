@@ -1,12 +1,14 @@
 from flask import Flask, request, render_template
 import tensorflow as tf
 import pickle
+from tensorflow.keras.preprocessing.text import Tokenizer  # ✅ Add this if needed
 
 app = Flask(__name__)
 
 # Load model and tokenizer
 model = tf.keras.models.load_model('gru_model.h5')
-with open('tokenizer.pkl', 'rb') as f:
+with open('tokenizer_tf.pkl', 'rb') as f:
+
     tokenizer = pickle.load(f)
 
 MAXLEN = 100  # Adjust if needed
